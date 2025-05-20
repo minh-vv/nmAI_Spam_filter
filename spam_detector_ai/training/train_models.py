@@ -3,7 +3,8 @@
 import os
 from pathlib import Path
 
-from sklearn.model_selection import train_test_split
+# Divide the data into training and testing sets
+from sklearn.model_selection import train_test_split 
 
 from spam_detector_ai.classifiers.classifier_types import ClassifierType
 from spam_detector_ai.classifiers.logistic_regression_classifier import LogisticRegressionSpamClassifier
@@ -20,21 +21,22 @@ class ModelTrainer:
                  logger=None):
         self.data_path = data_path
         self.classifier_type = classifier_type
-        self.test_size = test_size
+        self.test_size = test_size # 20% of the data is used for testing
         self.data = data
         self.processed_data = None
         self.logger = logger
         self.logger.info(f'ModelTrainer initialized with classifier type: {classifier_type}')
-        self.classifier = self.get_classifier_(classifier_type)
+        self.classifier = self.get_classifier_(classifier_type) # Initialize the classifier
 
     def preprocess_data_(self):
         self.logger.info('Preprocessing data')
         if self.data is None:
-            self.logger.info(f'Loading data from {self.data_path}')
+            self.logger.info(f'Loading data from {self.data_path}') # Load the data from the data_path if it is not already loaded
             self.data = DataLoader(self.data_path).get_data()
         self.processed_data = Preprocessor().preprocess(self.data)
         return self.processed_data
 
+    # 20% data is used for testing, 80% is used for training
     def split_data_(self):
         self.logger.info('Splitting data')
         if self.processed_data is None:
@@ -57,12 +59,14 @@ class ModelTrainer:
             self.logger.error(f"Invalid classifier type: {classifier_type}")
             raise ValueError(f"Invalid classifier type: {classifier_type}")
 
+    # Train the model based on the x_train(processed text) and y_train(label)
     def train(self, X_train, y_train):
         self.logger.info('Training started.')
 
         self.classifier.train(X_train, y_train)
         self.logger.info('Training completed.')
 
+    # Save the model to the models directory
     def get_directory_path(self):
         directory_map = {
             ClassifierType.NAIVE_BAYES.value: 'models/bayes',
@@ -77,6 +81,7 @@ class ModelTrainer:
         else:
             raise ValueError(f"Invalid classifier type: {self.classifier_type}")
 
+    # Save the model to the models directory
     def save_model(self, model_filename, vectoriser_filename):
         # Use the project root to construct the paths
         project_root = Path(__file__).parent.parent
