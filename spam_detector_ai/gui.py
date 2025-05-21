@@ -90,15 +90,15 @@ class EnhancedSpamDetectorGUI:
         self.result_label.pack(pady=5)
         
         # Confidence indicator
-        self.confidence_frame = ttk.Frame(result_frame)
-        self.confidence_frame.pack(fill=tk.X, pady=10)
+        # self.confidence_frame = ttk.Frame(result_frame)
+        # self.confidence_frame.pack(fill=tk.X, pady=10)
         
-        ttk.Label(self.confidence_frame, text="Độ tin cậy:").pack(side=tk.LEFT)
-        self.confidence_bar = ttk.Progressbar(self.confidence_frame, length=300, mode="determinate")
-        self.confidence_bar.pack(side=tk.LEFT, padx=10)
+        # ttk.Label(self.confidence_frame, text="Độ tin cậy:").pack(side=tk.LEFT)
+        # self.confidence_bar = ttk.Progressbar(self.confidence_frame, length=300, mode="determinate")
+        # self.confidence_bar.pack(side=tk.LEFT, padx=10)
         
-        self.confidence_value = ttk.Label(self.confidence_frame, text="0%")
-        self.confidence_value.pack(side=tk.LEFT)
+        # self.confidence_value = ttk.Label(self.confidence_frame, text="0%")
+        # self.confidence_value.pack(side=tk.LEFT)
         
         # Detailed analysis
         self.analysis_frame = ttk.LabelFrame(self.single_test_tab, text="Phân tích chi tiết", padding="10")
@@ -241,29 +241,29 @@ class EnhancedSpamDetectorGUI:
                     foreground="red" if is_spam else "green"
                 )
                 
-                # Update confidence bar
-                confidence_pct = int(confidence * 100)
-                self.confidence_bar["value"] = confidence_pct
-                self.confidence_value.configure(text=f"{confidence_pct}%")
+                # # Update confidence bar
+                # confidence_pct = int(confidence * 100)
+                # self.confidence_bar["value"] = confidence_pct
+                # self.confidence_value.configure(text=f"{confidence_pct}%")
                 
-                # Update analysis text with simulated data
-                self.analysis_text.delete("1.0", tk.END)
-                if is_spam:
-                    self.analysis_text.insert(tk.END, f"Phân tích bộ phân loại:\n\n")
-                    self.analysis_text.insert(tk.END, f"- Naive Bayes: Spam (độ tin cậy: {np.random.uniform(0.7, 0.99):.2f})\n")
-                    self.analysis_text.insert(tk.END, f"- Random Forest: Spam (độ tin cậy: {np.random.uniform(0.7, 0.99):.2f})\n")
-                    self.analysis_text.insert(tk.END, f"- SVM: Spam (độ tin cậy: {np.random.uniform(0.7, 0.99):.2f})\n")
-                    self.analysis_text.insert(tk.END, f"- Logistic Regression: {'Spam' if np.random.random() > 0.2 else 'Không phải spam'} (độ tin cậy: {np.random.uniform(0.6, 0.95):.2f})\n")
-                    self.analysis_text.insert(tk.END, f"- XGB: Spam (độ tin cậy: {np.random.uniform(0.7, 0.99):.2f})\n\n")
-                    self.analysis_text.insert(tk.END, f"Đặc điểm giúp phát hiện spam:\n- Nhiều từ khóa quảng cáo\n- Cấu trúc câu bất thường\n- Yêu cầu hành động gấp")
-                else:
-                    self.analysis_text.insert(tk.END, f"Phân tích bộ phân loại:\n\n")
-                    self.analysis_text.insert(tk.END, f"- Naive Bayes: Không phải spam (độ tin cậy: {np.random.uniform(0.7, 0.99):.2f})\n")
-                    self.analysis_text.insert(tk.END, f"- Random Forest: Không phải spam (độ tin cậy: {np.random.uniform(0.7, 0.99):.2f})\n")
-                    self.analysis_text.insert(tk.END, f"- SVM: Không phải spam (độ tin cậy: {np.random.uniform(0.7, 0.99):.2f})\n")
-                    self.analysis_text.insert(tk.END, f"- Logistic Regression: {'Không phải spam' if np.random.random() > 0.2 else 'Spam'} (độ tin cậy: {np.random.uniform(0.6, 0.95):.2f})\n")
-                    self.analysis_text.insert(tk.END, f"- XGB: Không phải spam (độ tin cậy: {np.random.uniform(0.7, 0.99):.2f})\n\n")
-                    self.analysis_text.insert(tk.END, f"Đặc điểm tin nhắn thông thường:\n- Cấu trúc câu tự nhiên\n- Không có yêu cầu hành động gấp\n- Nội dung liên quan đến người nhận")
+                # # Update analysis text with simulated data
+                # self.analysis_text.delete("1.0", tk.END)
+                # if is_spam:
+                #     self.analysis_text.insert(tk.END, f"Phân tích bộ phân loại:\n\n")
+                #     self.analysis_text.insert(tk.END, f"- Naive Bayes: Spam (độ tin cậy: {np.random.uniform(0.7, 0.99):.2f})\n")
+                #     self.analysis_text.insert(tk.END, f"- Random Forest: Spam (độ tin cậy: {np.random.uniform(0.7, 0.99):.2f})\n")
+                #     self.analysis_text.insert(tk.END, f"- SVM: Spam (độ tin cậy: {np.random.uniform(0.7, 0.99):.2f})\n")
+                #     self.analysis_text.insert(tk.END, f"- Logistic Regression: {'Spam' if np.random.random() > 0.2 else 'Không phải spam'} (độ tin cậy: {np.random.uniform(0.6, 0.95):.2f})\n")
+                #     self.analysis_text.insert(tk.END, f"- XGB: Spam (độ tin cậy: {np.random.uniform(0.7, 0.99):.2f})\n\n")
+                #     self.analysis_text.insert(tk.END, f"Đặc điểm giúp phát hiện spam:\n- Nhiều từ khóa quảng cáo\n- Cấu trúc câu bất thường\n- Yêu cầu hành động gấp")
+                # else:
+                #     self.analysis_text.insert(tk.END, f"Phân tích bộ phân loại:\n\n")
+                #     self.analysis_text.insert(tk.END, f"- Naive Bayes: Không phải spam (độ tin cậy: {np.random.uniform(0.7, 0.99):.2f})\n")
+                #     self.analysis_text.insert(tk.END, f"- Random Forest: Không phải spam (độ tin cậy: {np.random.uniform(0.7, 0.99):.2f})\n")
+                #     self.analysis_text.insert(tk.END, f"- SVM: Không phải spam (độ tin cậy: {np.random.uniform(0.7, 0.99):.2f})\n")
+                #     self.analysis_text.insert(tk.END, f"- Logistic Regression: {'Không phải spam' if np.random.random() > 0.2 else 'Spam'} (độ tin cậy: {np.random.uniform(0.6, 0.95):.2f})\n")
+                #     self.analysis_text.insert(tk.END, f"- XGB: Không phải spam (độ tin cậy: {np.random.uniform(0.7, 0.99):.2f})\n\n")
+                #     self.analysis_text.insert(tk.END, f"Đặc điểm tin nhắn thông thường:\n- Cấu trúc câu tự nhiên\n- Không có yêu cầu hành động gấp\n- Nội dung liên quan đến người nhận")
                 
                 # Add to history for statistics
                 self.results_history.append({
