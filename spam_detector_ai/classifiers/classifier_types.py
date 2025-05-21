@@ -6,6 +6,4 @@ from enum import Enum, auto
 class ClassifierType(Enum):
     NAIVE_BAYES = auto()
     RANDOM_FOREST = auto()
-    SVM = auto()
-    XGB = auto()
     LOGISTIC_REGRESSION = auto()
