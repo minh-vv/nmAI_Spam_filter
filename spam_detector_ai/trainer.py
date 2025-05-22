@@ -8,9 +8,9 @@ from sklearn.model_selection import train_test_split
 project_root = Path(__file__).parent.parent
 sys.path.append(str(project_root))
 
-from spam_detector_ai.classifiers.classifier_types import ClassifierType
-from spam_detector_ai.logger_config import init_logging
-from spam_detector_ai.training.train_models import ModelTrainer
+from classifiers.classifier_types import ClassifierType
+from logger_config import init_logging
+from training.train_models import ModelTrainer
 
 logger = init_logging()
 
@@ -34,8 +34,10 @@ if __name__ == '__main__':
 
     # Configurations for each model
     configurations = [
+        (ClassifierType.SVM, 'svm_model.joblib', 'svm_vectoriser.joblib'),
         (ClassifierType.NAIVE_BAYES, 'naive_bayes_model.joblib', 'naive_bayes_vectoriser.joblib'),
         (ClassifierType.RANDOM_FOREST, 'random_forest_model.joblib', 'random_forest_vectoriser.joblib'),
+        (ClassifierType.XGB, 'xgb_model.joblib', 'xgb_vectoriser.joblib'),
         (ClassifierType.LOGISTIC_REGRESSION, 'logistic_regression_model.joblib',
          'logistic_regression_vectoriser.joblib')
     ]
