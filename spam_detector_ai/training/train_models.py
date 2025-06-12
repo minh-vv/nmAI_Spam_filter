@@ -9,8 +9,6 @@ from spam_detector_ai.classifiers.classifier_types import ClassifierType
 from spam_detector_ai.classifiers.logistic_regression_classifier import LogisticRegressionSpamClassifier
 from spam_detector_ai.classifiers.naive_bayes_classifier import NaiveBayesClassifier
 from spam_detector_ai.classifiers.random_forest_classifier import RandomForestSpamClassifier
-from spam_detector_ai.classifiers.svm_classifier import SVMClassifier
-from spam_detector_ai.classifiers.xgb_classifier import XGBSpamClassifier
 from spam_detector_ai.loading_and_processing.data_loader import DataLoader
 from spam_detector_ai.loading_and_processing.preprocessor import Preprocessor
 
@@ -46,8 +44,6 @@ class ModelTrainer:
         classifier_map = {
             ClassifierType.NAIVE_BAYES.value: NaiveBayesClassifier(),
             ClassifierType.RANDOM_FOREST.value: RandomForestSpamClassifier(),
-            ClassifierType.SVM.value: SVMClassifier(),
-            ClassifierType.XGB.value: XGBSpamClassifier(),
             ClassifierType.LOGISTIC_REGRESSION.value: LogisticRegressionSpamClassifier(),
         }
         classifier = classifier_map.get(classifier_type.value)
@@ -67,8 +63,6 @@ class ModelTrainer:
         directory_map = {
             ClassifierType.NAIVE_BAYES.value: 'models/bayes',
             ClassifierType.RANDOM_FOREST.value: 'models/random_forest',
-            ClassifierType.SVM.value: 'models/svm',
-            ClassifierType.XGB.value: 'models/xgb',
             ClassifierType.LOGISTIC_REGRESSION.value: 'models/logistic_regression'
         }
         directory_path = directory_map.get(self.classifier_type.value)

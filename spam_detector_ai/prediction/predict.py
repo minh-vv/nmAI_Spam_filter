@@ -11,8 +11,6 @@ from spam_detector_ai.classifiers.classifier_types import ClassifierType
 from spam_detector_ai.classifiers.logistic_regression_classifier import LogisticRegressionSpamClassifier
 from spam_detector_ai.classifiers.naive_bayes_classifier import NaiveBayesClassifier
 from spam_detector_ai.classifiers.random_forest_classifier import RandomForestSpamClassifier
-from spam_detector_ai.classifiers.svm_classifier import SVMClassifier
-from spam_detector_ai.classifiers.xgb_classifier import XGBSpamClassifier
 from spam_detector_ai.loading_and_processing.preprocessor import Preprocessor
 from spam_detector_ai.prediction.performance import ModelAccuracy
 
@@ -32,14 +30,6 @@ def get_model_path(model_type):
         ClassifierType.RANDOM_FOREST: (
             'models/random_forest/random_forest_model.joblib',
             'models/random_forest/random_forest_vectoriser.joblib'
-        ),
-        ClassifierType.SVM: (
-            'models/svm/svm_model.joblib',
-            'models/svm/svm_vectoriser.joblib'
-        ),
-        ClassifierType.XGB: (
-            'models/xgb/xgb_model.joblib',
-            'models/xgb/xgb_vectoriser.joblib'
         ),
         ClassifierType.LOGISTIC_REGRESSION: (
             'models/logistic_regression/logistic_regression_model.joblib',
@@ -68,8 +58,6 @@ class SpamDetector:
         classifier_map = {
             ClassifierType.NAIVE_BAYES.value: NaiveBayesClassifier(),
             ClassifierType.RANDOM_FOREST.value: RandomForestSpamClassifier(),
-            ClassifierType.SVM.value: SVMClassifier(),
-            ClassifierType.XGB.value: XGBSpamClassifier(),
             ClassifierType.LOGISTIC_REGRESSION.value: LogisticRegressionSpamClassifier(),
         }
         # Lấy bộ phân loại dựa vào loại model được chỉ định
@@ -117,9 +105,7 @@ class VotingSpamDetector:
         self.detectors = [
             (SpamDetector(model_type=ClassifierType.NAIVE_BAYES), ModelAccuracy.NAIVE_BAYES / total_accuracy),
             (SpamDetector(model_type=ClassifierType.RANDOM_FOREST), ModelAccuracy.RANDOM_FOREST / total_accuracy),
-            (SpamDetector(model_type=ClassifierType.SVM), ModelAccuracy.SVM / total_accuracy),
-            (SpamDetector(model_type=ClassifierType.LOGISTIC_REGRESSION), ModelAccuracy.LOGISTIC_REG / total_accuracy),
-            (SpamDetector(model_type=ClassifierType.XGB), ModelAccuracy.XGB / total_accuracy)
+            (SpamDetector(model_type=ClassifierType.LOGISTIC_REGRESSION), ModelAccuracy.LOGISTIC_REG / total_accuracy)
         ]
 
     def is_spam(self, message_):

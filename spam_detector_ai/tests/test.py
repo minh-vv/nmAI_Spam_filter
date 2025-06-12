@@ -16,7 +16,7 @@ from spam_detector_ai.training.train_models import ModelTrainer
 
 class TestModel:
     def __init__(self):
-        self.classifier_types = [ClassifierType.NAIVE_BAYES, ClassifierType.RANDOM_FOREST, ClassifierType.SVM]
+        self.classifier_types = [ClassifierType.NAIVE_BAYES, ClassifierType.RANDOM_FOREST, ClassifierType.LOGISTIC_REGRESSION]
         self.logger = init_logging()
         data_path = os.path.join(project_root, 'spam_detector_ai', 'data', 'spam.csv')
         self.initial_trainer = ModelTrainer(data_path=data_path, logger=self.logger)
